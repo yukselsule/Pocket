@@ -2,7 +2,6 @@ import { useLocalStorageState } from "../../hooks/useLocalStorage";
 
 function ExpenseList() {
   const [expenses] = useLocalStorageState([], "expenses");
-  console.log(expenses);
 
   return (
     <ul>

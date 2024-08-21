@@ -1,5 +1,7 @@
+import Summary from "../features/summary/Summary";
+
 function SummaryPage() {
-  return <div>Summary</div>;
+  return <Summary />;
 }
 
 export default SummaryPage;

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { updateBalance } from "../balance/BalanceSlice";
 
 const initialState = {
@@ -12,6 +13,9 @@ const incomeSlice = createSlice({
     addIncome(state, action) {
       state.incomes.push(action.payload);
     },
+    setIncomes(state, action) {
+      state.incomes = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder.addCase(addIncome, (state, action) => {
@@ -21,7 +25,7 @@ const incomeSlice = createSlice({
     }),
 });
 
-export const { addIncome } = incomeSlice.actions;
+export const { addIncome, setIncomes } = incomeSlice.actions;
 
 export const selectIncomes = (state) => state.income.incomes;
 

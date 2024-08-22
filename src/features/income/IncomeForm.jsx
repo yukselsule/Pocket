@@ -1,16 +1,21 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useLocalStorageState } from "../../hooks/useLocalStorage";
 
-import { addIncome } from "./IncomeSlice";
+import { addIncome, selectIncomes, setIncomes } from "./IncomeSlice";
 import { updateBalance } from "../balance/BalanceSlice";
 
 function IncomeForm() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [incomes, setIncomes] = useLocalStorageState([], "incomes");
+  const [storedIncomes, setStoredIncomes] = useLocalStorageState([], "incomes");
   const dispatch = useDispatch();
+  const incomes = useSelector(selectIncomes);
+
+  useEffect(() => {
+    dispatch(setIncomes(storedIncomes));
+  }, [dispatch, storedIncomes]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +26,7 @@ function IncomeForm() {
       dispatch(addIncome(newIncome));
       dispatch(updateBalance(parseFloat(amount)));
 
-      setIncomes([...incomes, newIncome]);
+      setStoredIncomes([...incomes, newIncome]);
 
       setDescription("");
       setAmount("");

@@ -1,15 +1,20 @@
-import { useLocalStorageState } from "../../hooks/useLocalStorage";
+import { useSelector } from "react-redux";
+
+import { selectIncomes } from "./IncomeSlice";
 
 function IncomeList() {
-  const [incomes] = useLocalStorageState([], "incomes");
+  const incomes = useSelector(selectIncomes);
 
   return (
     <ul>
-      {incomes.map((income, index) => (
-        <li key={index}>
-          {income.description} : <span>{income.amount}</span>
-        </li>
-      ))}
+      {incomes
+        .slice()
+        .reverse()
+        .map((income, index) => (
+          <li key={index}>
+            {income.description} : <span>{income.amount}</span>
+          </li>
+        ))}
     </ul>
   );
 }

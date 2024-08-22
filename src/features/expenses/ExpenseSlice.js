@@ -12,6 +12,9 @@ const expenseSlice = createSlice({
     addExpense(state, action) {
       state.expenses.push(action.payload);
     },
+    setExpenses(state, action) {
+      state.expenses = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder.addCase(addExpense, (state, action) => {
@@ -21,7 +24,7 @@ const expenseSlice = createSlice({
     }),
 });
 
-export const { addExpense } = expenseSlice.actions;
+export const { addExpense, setExpenses } = expenseSlice.actions;
 
 export const selectExpenses = (state) => state.expense.expenses;
 

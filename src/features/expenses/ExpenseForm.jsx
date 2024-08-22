@@ -1,29 +1,37 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useLocalStorageState } from "../../hooks/useLocalStorage";
 
-import { addExpense } from "./ExpenseSlice";
+import { addExpense, selectExpenses, setExpenses } from "./ExpenseSlice";
 import { updateBalance } from "../balance/BalanceSlice";
+
+const expenseTypes = [
+  "Housing",
+  "Shopping",
+  "Food & Drinks",
+  "Transportation",
+  "Vehicle",
+  "Life & Entertainment",
+  "Communication",
+  "Invesments",
+  "Other",
+];
 
 function ExpenseForm() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [expenseType, setExpenseType] = useState("");
-  const [expenses, setExpenses] = useLocalStorageState([], "expenses");
+  const [storedExpenses, setStoredExpenses] = useLocalStorageState(
+    [],
+    "expenses"
+  );
   const dispatch = useDispatch();
+  const expenses = useSelector(selectExpenses);
 
-  const expenseTypes = [
-    "Housing",
-    "Shopping",
-    "Food & Drinks",
-    "Transportation",
-    "Vehicle",
-    "Life & Entertainment",
-    "Communication",
-    "Invesments",
-    "Other",
-  ];
+  useEffect(() => {
+    dispatch(setExpenses(storedExpenses));
+  }, [dispatch, storedExpenses]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,10 +45,11 @@ function ExpenseForm() {
       dispatch(addExpense(newExpense));
       dispatch(updateBalance(parseFloat(-amount)));
 
-      setExpenses([...expenses, newExpense]);
+      setStoredExpenses([...expenses, newExpense]);
 
       setDescription("");
       setAmount("");
+      setExpenseType("");
     }
   }
 
@@ -71,12 +80,11 @@ function ExpenseForm() {
       <div>
         <label>Type</label>
         <select
-          placeholder="Choose"
           value={expenseType}
           onChange={(e) => setExpenseType(e.target.value)}
           required
         >
-          <option value="">Please choose an option</option>
+          <option value="">Choose expense type</option>
           {expenseTypes.map((expenseType, index) => (
             <option key={index} value={expenseType}>
               {expenseType}

@@ -1,16 +1,21 @@
-import { useLocalStorageState } from "../../hooks/useLocalStorage";
+import { useSelector } from "react-redux";
+
+import { selectExpenses } from "./ExpenseSlice";
 
 function ExpenseList() {
-  const [expenses] = useLocalStorageState([], "expenses");
+  const expenses = useSelector(selectExpenses);
 
   return (
     <ul>
-      {expenses.map((expense, index) => (
-        <li key={index}>
-          {expense.expenseType} - {expense.description} :{" "}
-          <span>{expense.amount}</span>
-        </li>
-      ))}
+      {expenses
+        .slice()
+        .reverse()
+        .map((expense, index) => (
+          <li key={index}>
+            {expense.expenseType} - {expense.description} :{" "}
+            <span>{expense.amount}</span>
+          </li>
+        ))}
     </ul>
   );
 }

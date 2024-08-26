@@ -2,8 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { updateBalance } from "../balance/BalanceSlice";
 
+const loadIncomesFromLocalStorage = function () {
+  const savedIncomes = localStorage.getItem("incomes");
+
+  return savedIncomes ? parseFloat(savedIncomes) : 0;
+};
+
 const initialState = {
-  incomes: [],
+  incomes: loadIncomesFromLocalStorage(),
 };
 
 const incomeSlice = createSlice({

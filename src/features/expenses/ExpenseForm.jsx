@@ -7,94 +7,105 @@ import { addExpense, selectExpenses, setExpenses } from "./ExpenseSlice";
 import { updateBalance } from "../balance/BalanceSlice";
 
 const expenseTypes = [
-  "Housing",
-  "Shopping",
-  "Food & Drinks",
-  "Transportation",
-  "Vehicle",
-  "Life & Entertainment",
-  "Communication",
-  "Invesments",
-  "Other",
+    "Housing",
+    "Shopping",
+    "Food & Drinks",
+    "Transportation",
+    "Vehicle",
+    "Life & Entertainment",
+    "Communication",
+    "Invesments",
+    "Other",
 ];
 
 function ExpenseForm() {
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [expenseType, setExpenseType] = useState("");
-  const [storedExpenses, setStoredExpenses] = useLocalStorageState(
-    [],
-    "expenses"
-  );
-  const dispatch = useDispatch();
-  const expenses = useSelector(selectExpenses);
+    const [description, setDescription] = useState("");
+    const [amount, setAmount] = useState("");
+    const [expenseType, setExpenseType] = useState("");
+    const [storedExpenses, setStoredExpenses] = useLocalStorageState(
+        [],
+        "expenses"
+    );
+    const dispatch = useDispatch();
+    const expenses = useSelector(selectExpenses);
 
-  useEffect(() => {
-    dispatch(setExpenses(storedExpenses));
-  }, [dispatch, storedExpenses]);
+    useEffect(() => {
+        dispatch(setExpenses(storedExpenses));
+    }, [dispatch, storedExpenses]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
 
-    if (description && amount && expenseType) {
-      const newExpense = {
-        description,
-        amount: parseFloat(amount),
-        expenseType,
-      };
-      dispatch(addExpense(newExpense));
-      dispatch(updateBalance(parseFloat(-amount)));
+        if (description && amount && expenseType) {
+            const newExpense = {
+                description,
+                amount: parseFloat(amount),
+                expenseType,
+            };
+            dispatch(addExpense(newExpense));
+            dispatch(updateBalance(parseFloat(-amount)));
 
-      setStoredExpenses([...expenses, newExpense]);
+            setStoredExpenses([...expenses, newExpense]);
 
-      setDescription("");
-      setAmount("");
-      setExpenseType("");
+            setDescription("");
+            setAmount("");
+            setExpenseType("");
+        }
     }
-  }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Description</label>
-        <input
-          type="text"
-          id="description"
-          placeholder="Expense description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Amount</label>
-        <input
-          type="number"
-          id="amount"
-          placeholder="Expense amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Type</label>
-        <select
-          value={expenseType}
-          onChange={(e) => setExpenseType(e.target.value)}
-          required
+    return (
+        <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-3 [&>div]:flex [&>div]:justify-between [&>div]:gap-3"
         >
-          <option value="">Choose expense type</option>
-          {expenseTypes.map((expenseType, index) => (
-            <option key={index} value={expenseType}>
-              {expenseType}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button type="submit">Add Expense</button>
-    </form>
-  );
+            <div>
+                <label>Description</label>
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Expense description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                    className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-gray-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                />
+            </div>
+            <div>
+                <label>Amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Expense amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    required
+                    className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-gray-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                />
+            </div>
+            <div>
+                <label>Type</label>
+                <select
+                    value={expenseType}
+                    onChange={(e) => setExpenseType(e.target.value)}
+                    required
+                    className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-gray-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                >
+                    <option value="">Choose expense type</option>
+                    {expenseTypes.map((expenseType, index) => (
+                        <option key={index} value={expenseType}>
+                            {expenseType}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <button
+                type="submit"
+                className="flex self-end rounded-lg border bg-stone-300 px-2 py-1 transition-all duration-500 hover:bg-sky-500"
+            >
+                Add Expense
+            </button>
+        </form>
+    );
 }
 
 export default ExpenseForm;

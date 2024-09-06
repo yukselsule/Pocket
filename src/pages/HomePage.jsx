@@ -5,15 +5,24 @@ import IncomeList from "../features/income/IncomeList";
 
 function HomePage() {
     return (
-        <div className="md:flex md:justify-between">
-            <div className="rounded-md bg-sky-100 px-12 py-6">
-                <h2 className="font-bold uppercase text-red-950">Incomes</h2>
-                <IncomeForm />
+        <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
+            <div className="flex min-w-96 max-w-lg flex-col justify-between rounded-md bg-sky-100 px-12 py-6">
+                <div>
+                    <h2 className="pb-4 font-bold uppercase text-sky-950">
+                        Incomes
+                    </h2>
+                    <IncomeForm />
+                </div>
                 <IncomeList />
             </div>
-            <div className="rounded-md bg-sky-100 px-12 py-6">
-                <h2 className="font-bold uppercase text-red-950">Expenses</h2>
-                <ExpenseForm />
+            <div className="flex min-w-96 max-w-lg flex-col justify-between rounded-md bg-rose-100 px-12 py-6">
+                <div>
+                    <h2 className="pb-4 font-bold uppercase text-rose-950">
+                        Expenses
+                    </h2>
+                    <ExpenseForm />
+                </div>
+
                 <ExpenseList />
             </div>
         </div>

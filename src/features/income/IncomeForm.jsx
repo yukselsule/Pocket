@@ -51,23 +51,24 @@ function IncomeForm() {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
-                        className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-gray-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-stone-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
                     />
                 </div>
                 <div>
                     <label>Amount</label>
                     <input
                         type="number"
+                        min="1"
                         id="amount"
                         placeholder="Income amount"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
-                        className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-gray-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        className="rounded-lg border border-stone-300 bg-stone-50 px-2 py-1 text-sm text-stone-900 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
                     />
                 </div>
                 <button
-                    className="flex self-end rounded-lg border bg-stone-300 px-2 py-1 transition-all duration-500 hover:bg-sky-500"
+                    className="flex self-end rounded-lg border bg-stone-300 px-2 py-1 transition-all duration-500 hover:bg-sky-400"
                     type="submit"
                 >
                     Add Income

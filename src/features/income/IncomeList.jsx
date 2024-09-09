@@ -15,7 +15,7 @@ function IncomeList() {
                         .map((income, index) => (
                             <li
                                 key={index}
-                                className={`${index % 2 === 0 ? "bg-stone-100" : "bg-stone-300"} px-3 py-1`}
+                                className={`${index % 2 === 0 ? "bg-stone-100" : "bg-stone-300"} flex justify-between gap-3 px-3 py-1`}
                             >
                                 {income.description} :{" "}
                                 <span>{income.amount}</span>

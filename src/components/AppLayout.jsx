@@ -6,7 +6,7 @@ function AppLayout() {
     return (
         <div>
             <Header />
-            <main className="container mx-auto my-0 w-3/4 pt-12">
+            <main className="container mx-auto my-0 w-11/12 pt-4 sm:w-3/4 sm:max-w-3xl">
                 <Outlet />
             </main>
             <Footer />

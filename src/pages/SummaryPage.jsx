@@ -1,7 +1,7 @@
 import Summary from "../features/summary/Summary";
 
 function SummaryPage() {
-  return <Summary />;
+    return <Summary />;
 }
 
 export default SummaryPage;

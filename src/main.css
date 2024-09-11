@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        @apply bg-stone-50;
+    }
+}
+
 .thin-scrollbar::-webkit-scrollbar {
     width: 4px;
 }

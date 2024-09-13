@@ -13,6 +13,7 @@ const expenseTypes = [
     "Transportation",
     "Vehicle",
     "Life & Entertainment",
+    "Health",
     "Communication",
     "Invesments",
     "Other",

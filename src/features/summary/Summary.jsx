@@ -22,6 +22,8 @@ const getIconName = (expenseType) => {
             return "car-outline";
         case "Life & Entertainment":
             return "happy-outline";
+        case "Health":
+            return "medkit-outline";
         case "Communication":
             return "call-outline";
         case "Invesments":
@@ -89,6 +91,7 @@ function Summary() {
                     "#f472b6",
                     "#38bdf8",
                     "#facc15",
+                    "#e879f9",
                 ],
                 borderColor: [
                     "#ef4444",
@@ -100,6 +103,7 @@ function Summary() {
                     "#ec4899",
                     "#0ea5e9",
                     "#eab308",
+                    "#d946ef",
                 ],
                 borderWidth: 1,
             },
@@ -125,8 +129,8 @@ function Summary() {
     };
 
     return (
-        <div className="text-stone-900">
-            <div className="mb-4 flex justify-between">
+        <div className="bg-gradient-to-r from-rose-50 to-sky-50 px-12 py-6 text-stone-900 sm:my-4 sm:rounded-sm">
+            <div className="mb-4 sm:flex sm:justify-between">
                 <p>
                     Your incomes:{" "}
                     <span className="text-2xl font-semibold text-sky-900">
@@ -141,23 +145,28 @@ function Summary() {
                 </p>
             </div>
 
-            <p>Your spend your money on</p>
+            <p>Your spend your money on:</p>
 
-            <div className="mx-auto my-4 w-full max-w-xs">
+            <div className="mx-auto my-4 min-h-full min-w-16 sm:max-w-sm">
                 <Pie data={pieData} />
             </div>
 
-            <div className="grid grid-cols-3 gap-y-2 rounded-sm border-2 border-rose-700 bg-stone-100 px-4 py-2 text-stone-900 lg:grid-cols-9">
+            <div className="grid grid-cols-2 gap-y-2 rounded-sm border-2 border-rose-700 px-4 py-2 text-stone-900 md:grid-cols-4">
                 {expenseTypesAmounts.map((expense) => (
                     <div
                         key={expense.expenseType}
-                        className="flex items-center gap-x-4 justify-self-center"
+                        className="flex items-center gap-x-3 justify-self-center"
                     >
                         <ion-icon
                             name={getIconName(expense.expenseType)}
-                            style={{ fontSize: "20px", color: "#082f49" }}
+                            style={{
+                                fontSize: "20px",
+                                color: "#082f49",
+                            }}
                         ></ion-icon>
-                        <span>{expense.expenseAmount}</span>
+                        <span className="font-semibold">
+                            {expense.expenseAmount}
+                        </span>
                     </div>
                 ))}
             </div>

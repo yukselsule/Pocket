@@ -118,9 +118,6 @@ function Summary() {
                     labels: {
                         boxWidth: 10,
                     },
-                    font: {
-                        size: 10, // Yazı tipi boyutunu küçült.
-                    },
                 },
                 tooltip: {
                     callbacks: {
@@ -159,8 +156,11 @@ function Summary() {
 
             <p>Your spend your money on:</p>
 
-            <div className="mx-auto my-4 min-w-16 p-4 sm:max-w-sm">
-                <Pie data={pieData} />
+            <div className="mx-auto my-4 min-w-16 sm:max-w-sm">
+                <Pie
+                    data={pieData}
+                    style={{ height: "350px", width: "350px" }}
+                />
             </div>
 
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 rounded-sm border-2 border-rose-700 px-4 py-2 text-stone-900 md:grid-cols-4">

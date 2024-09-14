@@ -4,9 +4,9 @@ import Footer from "./Footer";
 
 function AppLayout() {
     return (
-        <div>
+        <div className="min-h-dvh text-xs sm:text-sm">
             <Header />
-            <main className="container mx-auto my-0 w-11/12 pt-4 sm:w-3/4 sm:max-w-3xl">
+            <main className="container mx-auto my-0 min-h-full sm:w-3/4 sm:max-w-3xl">
                 <Outlet />
             </main>
             <Footer />

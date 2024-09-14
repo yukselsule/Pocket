@@ -6,8 +6,8 @@ function ExpenseList() {
     const expenses = useSelector(selectExpenses);
 
     return (
-        <div className="max-w-68 mt-6 self-center overflow-hidden rounded-sm border border-rose-300 bg-stone-100 p-0 md:max-w-96">
-            <ul className="thin-scrollbar max-h-60 max-w-80 overflow-y-scroll scroll-smooth md:max-w-full">
+        <div className="max-w-68 mt-6 w-full self-center overflow-hidden rounded-sm border border-rose-300 bg-stone-100 p-0 md:max-w-96">
+            <ul className="thin-scrollbar max-h-60 overflow-y-scroll scroll-smooth">
                 {expenses.length > 0 &&
                     expenses
                         .slice()

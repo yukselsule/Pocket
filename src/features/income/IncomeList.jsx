@@ -6,8 +6,8 @@ function IncomeList() {
     const incomes = useSelector(selectIncomes);
 
     return (
-        <div className="max-w-68 mt-6 self-center overflow-hidden rounded-sm border border-sky-300 bg-stone-100 p-0 md:max-w-96">
-            <ul className="thin-scrollbar max-h-60 max-w-80 overflow-y-scroll scroll-smooth">
+        <div className="max-w-68 mt-6 w-full self-center overflow-hidden rounded-sm border border-sky-300 bg-stone-100 p-0 md:max-w-96">
+            <ul className="thin-scrollbar max-h-60 overflow-y-scroll scroll-smooth">
                 {incomes.length > 0 &&
                     incomes
                         ?.slice()

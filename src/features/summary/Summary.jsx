@@ -109,7 +109,19 @@ function Summary() {
             },
         ],
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             plugins: {
+                legend: {
+                    display: "true",
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 10,
+                    },
+                    font: {
+                        size: 10, // Yazı tipi boyutunu küçült.
+                    },
+                },
                 tooltip: {
                     callbacks: {
                         label: function (context) {

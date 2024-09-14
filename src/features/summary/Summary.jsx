@@ -129,7 +129,7 @@ function Summary() {
     };
 
     return (
-        <div className="bg-gradient-to-r from-rose-50 to-sky-50 px-12 py-6 text-stone-900 sm:my-4 sm:rounded-sm">
+        <div className="flex flex-col items-center bg-gradient-to-r from-rose-50 to-sky-50 px-6 py-3 text-sm text-stone-900 sm:my-4 sm:block sm:rounded-sm sm:px-12 sm:py-6">
             <div className="mb-4 sm:flex sm:justify-between">
                 <p>
                     Your incomes:{" "}
@@ -147,11 +147,11 @@ function Summary() {
 
             <p>Your spend your money on:</p>
 
-            <div className="mx-auto my-4 min-h-full min-w-16 sm:max-w-sm">
+            <div className="mx-auto my-4 min-w-16 p-4 sm:max-w-sm">
                 <Pie data={pieData} />
             </div>
 
-            <div className="grid grid-cols-2 gap-y-2 rounded-sm border-2 border-rose-700 px-4 py-2 text-stone-900 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2 rounded-sm border-2 border-rose-700 px-4 py-2 text-stone-900 md:grid-cols-4">
                 {expenseTypesAmounts.map((expense) => (
                     <div
                         key={expense.expenseType}

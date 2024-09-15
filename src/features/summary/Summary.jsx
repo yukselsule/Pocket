@@ -137,8 +137,17 @@ function Summary() {
         },
     };
 
+    if (!incomesTotal || !expensesTotal)
+        return (
+            <p className="px-8 text-center text-xl font-semibold text-stone-900">
+                Start adding your income and expenses to manage your budget.
+                Once you track them, reaching your financial goals will be much
+                easier!
+            </p>
+        );
+
     return (
-        <div className="flex flex-col items-center bg-gradient-to-r from-rose-50 to-sky-50 text-sm text-stone-900 sm:my-4 sm:block sm:rounded-sm sm:px-12 sm:py-6">
+        <div className="flex flex-grow flex-col items-center bg-gradient-to-r from-rose-50 to-sky-50 py-4 text-sm text-stone-900 sm:my-4 sm:block sm:rounded-sm sm:px-12 sm:py-6">
             <div className="mb-4 sm:flex sm:justify-between">
                 <p>
                     Your incomes:{" "}

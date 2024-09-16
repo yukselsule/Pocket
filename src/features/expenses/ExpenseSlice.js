@@ -3,32 +3,32 @@ import { createSlice } from "@reduxjs/toolkit";
 import { updateBalance } from "../balance/BalanceSlice";
 
 const loadExpensesFromLocalStorage = function () {
-  const savedExpenses = localStorage.getItem("expenses");
+    const savedExpenses = localStorage.getItem("expenses");
 
-  return savedExpenses ? parseFloat(savedExpenses) : 0;
+    return savedExpenses ? JSON.parse(savedExpenses) : [];
 };
 
 const initialState = {
-  expenses: loadExpensesFromLocalStorage(),
+    expenses: loadExpensesFromLocalStorage(),
 };
 
 const expenseSlice = createSlice({
-  name: "expenses",
-  initialState,
-  reducers: {
-    addExpense(state, action) {
-      state.expenses.push(action.payload);
+    name: "expenses",
+    initialState,
+    reducers: {
+        addExpense(state, action) {
+            state.expenses.push(action.payload);
+        },
+        setExpenses(state, action) {
+            state.expenses = action.payload;
+        },
     },
-    setExpenses(state, action) {
-      state.expenses = action.payload;
-    },
-  },
-  extraReducers: (builder) =>
-    builder.addCase(addExpense, (state, action) => {
-      const expenseAmount = action.payload.amount;
+    extraReducers: (builder) =>
+        builder.addCase(addExpense, (state, action) => {
+            const expenseAmount = action.payload.amount;
 
-      updateBalance(state.balance - expenseAmount);
-    }),
+            updateBalance(state.balance - expenseAmount);
+        }),
 });
 
 export const { addExpense, setExpenses } = expenseSlice.actions;

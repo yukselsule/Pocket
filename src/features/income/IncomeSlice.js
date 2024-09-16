@@ -3,32 +3,32 @@ import { createSlice } from "@reduxjs/toolkit";
 import { updateBalance } from "../balance/BalanceSlice";
 
 const loadIncomesFromLocalStorage = function () {
-  const savedIncomes = localStorage.getItem("incomes");
+    const savedIncomes = localStorage.getItem("incomes");
 
-  return savedIncomes ? parseFloat(savedIncomes) : 0;
+    return savedIncomes ? JSON.parse(savedIncomes) : [];
 };
 
 const initialState = {
-  incomes: loadIncomesFromLocalStorage(),
+    incomes: loadIncomesFromLocalStorage(),
 };
 
 const incomeSlice = createSlice({
-  name: "incomes",
-  initialState,
-  reducers: {
-    addIncome(state, action) {
-      state.incomes.push(action.payload);
+    name: "incomes",
+    initialState,
+    reducers: {
+        addIncome(state, action) {
+            state.incomes.push(action.payload);
+        },
+        setIncomes(state, action) {
+            state.incomes = action.payload;
+        },
     },
-    setIncomes(state, action) {
-      state.incomes = action.payload;
-    },
-  },
-  extraReducers: (builder) =>
-    builder.addCase(addIncome, (state, action) => {
-      const incomeAmount = action.payload.amount;
+    extraReducers: (builder) =>
+        builder.addCase(addIncome, (state, action) => {
+            const incomeAmount = action.payload.amount;
 
-      updateBalance(state.balance + incomeAmount);
-    }),
+            updateBalance(state.balance + incomeAmount);
+        }),
 });
 
 export const { addIncome, setIncomes } = incomeSlice.actions;

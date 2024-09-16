@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectExpenses } from "./ExpenseSlice";
 
 function ExpenseList() {
-    const expenses = useSelector(selectExpenses);
+    const expenses = useSelector(selectExpenses) || [];
 
     if (expenses.length > 0)
         return (

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectIncomes } from "./IncomeSlice";
 
 function IncomeList() {
-    const incomes = useSelector(selectIncomes);
+    const incomes = useSelector(selectIncomes) || [];
 
     if (incomes.length > 0)
         return (

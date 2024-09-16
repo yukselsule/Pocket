@@ -44,9 +44,9 @@ function ExpenseForm() {
                 expenseType,
             };
             dispatch(addExpense(newExpense));
-            dispatch(updateBalance(parseFloat(-amount)));
-
             setStoredExpenses([...expenses, newExpense]);
+
+            dispatch(updateBalance(parseFloat(-amount)));
 
             setDescription("");
             setAmount("");

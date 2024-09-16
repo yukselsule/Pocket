@@ -27,9 +27,9 @@ function IncomeForm() {
             const newIncome = { description, amount: parseFloat(amount) };
 
             dispatch(addIncome(newIncome));
-            dispatch(updateBalance(parseFloat(amount)));
-
             setStoredIncomes([...incomes, newIncome]);
+
+            dispatch(updateBalance(parseFloat(amount)));
 
             setDescription("");
             setAmount("");
